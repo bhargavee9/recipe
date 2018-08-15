@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ingredients</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <form  th:object="${ingredient}" action = "#" th:action="@{'/recipe/'+${recipe_id}+'/ingredients/'}" method="POST">
+                <div class="form-group">
+                    <input th:type="hidden" th:field="*{id}">
+                    Ingredient Name : <input th:type="text" th:field="*{description}">
+                    Amount : <input th:type="text" th:field="*{amount}">
+                    <select th:field="*{uom}">
+                        <option th:each="uom : ${uoms}" th:value="${uom.getId()}" th:text="${uom.getDescription()}">
+                        </option>
+                    </select>
+
+                 </div>
+                <input type="submit">
+            </form>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
